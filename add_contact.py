@@ -1,0 +1,30 @@
+import tkinter as tk
+from tkinter import messagebox
+def add_contact():
+    name = name_entry.get()
+    phone = phone_entry.get()
+    if name and phone:
+        contacts_list.insert(tk.END, f"{name}: {phone}")
+        name_label.config(text=f"نام: {name}")
+        phone_label.config(text=f"شماره تلفن: {phone}")
+        name_entry.delete(0, tk.END)
+        phone_entry.delete(0, tk.END)
+    else:
+        messagebox.showwarning("ورود نامعتبر", "لطفاً نام و شماره تلفن را وارد کنید.")
+root = tk.Tk()
+root.title("دفترچه تلفن")
+tk.Label(root, text="نام:").grid(row=0, column=0, padx=10, pady=10)
+name_entry = tk.Entry(root)
+name_entry.grid(row=0, column=1, padx=10, pady=10)
+tk.Label(root, text="شماره تلفن:").grid(row=1, column=0, padx=10, pady=10)
+phone_entry = tk.Entry(root)
+phone_entry.grid(row=1, column=1, padx=10, pady=10)
+add_button = tk.Button(root, text="افزودن تماس", command=add_contact)
+add_button.grid(row=2, columnspan=2, pady=10)
+contacts_list = tk.Listbox(root, width=40)
+contacts_list.grid(row=3, columnspan=2, padx=10, pady=10)
+name_label = tk.Label(root, text="نام:")
+name_label.grid(row=4, column=0, padx=10, pady=10)
+phone_label = tk.Label(root, text="شماره تلفن:")
+phone_label.grid(row=4, column=1, padx=10, pady=10)
+root.mainloop()
